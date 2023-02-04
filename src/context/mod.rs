@@ -277,6 +277,11 @@ impl Context {
         Ok(())
     }
 
+    /// Reset to default the considered state of the OpenGL state machine.
+    pub unsafe fn reset_state(&self) {
+        *self.state.borrow_mut() = Default::default();
+    }
+
     /// Swaps the buffers in the backend.
     pub fn swap_buffers(&self) -> Result<(), SwapBuffersError> {
         if self.state.borrow().lost_context {
